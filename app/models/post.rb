@@ -23,4 +23,20 @@ class Post < ApplicationRecord
     #image
   #end
 
+   # ransack用の検索対象フィールドを指定する
+  def self.searchable_attributes
+    %w[title posted_text]
+  end
+  searchable_attributes.each do |field|
+    scope "search_by_#{field}", ->(keyword) { where("#{field} LIKE ?", "%#{keyword}%") }
+  end
+
+  def self.ransackable_attributes(auth_object = nil)
+   ["title", "posted_text"] # 検索可能な属性名を指定
+  end
+
+  def self.ransackable_associations(auth_object = nil)
+    [] # 検索可能な関連名を指定
+  end
+
 end

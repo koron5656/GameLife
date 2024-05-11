@@ -1,5 +1,10 @@
 <h1>投稿一覧</h1>
 
+<%= search_form_for @q, url: posts_path, method: :get do |f| %>
+  <%= f.search_field :title_or_posted_text_cont, placeholder: 'キーワード検索' %>
+  <%= f.submit '検索' %>
+<% end %>
+
 <% @posts.each do |post| %>
   <div>
     <%= image_tag post.get_image %>
