@@ -10,7 +10,9 @@ class PostimagesController < ApplicationController
     @post.save
     redirect_to post_images_path
   end
+
   def index
+    @post = Post.page(params[:page])
   end
 
   def show

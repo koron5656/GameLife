@@ -8,9 +8,11 @@ class PostsController < ApplicationController
     @post = Post.new(post_params)
     @post.user_id = current_user.id
     @post.save
-    redirect_to post_path
+    redirect_to posts_path
   end
+
   def index
+    @posts = Post.all
   end
 
   def show
@@ -19,7 +21,7 @@ class PostsController < ApplicationController
   # 投稿データのストロングパラメータ
   private
 
-  def post_image_params
-    params.require(:post_image).permit(:shop_name, :image, :caption)
+  def post_params
+    params.require(:post).permit(:comments, :image, :posted_text, :title)
   end
 end
