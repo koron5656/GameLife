@@ -7,6 +7,10 @@ import Rails from "@rails/ujs"
 import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
+import 'bootstrap-tagsinput';
+$(document).ready(function() {
+  $("input[data-role='tagsinput']").tagsinput();
+});
 
 Rails.start()
 Turbolinks.start()

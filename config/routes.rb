@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
   devise_for :users
-  #devise_for :admin, skip: [:registrations, :password], controllers: {
-  #  sessions: 'admin/sessions'
-  #}
+  devise_for :admin, skip: [:registrations, :password], controllers: {
+    sessions: 'admin/sessions'
+  }
 
   root to: "homes#top"
   #resources :post_images, only: [:new, :create, :index, :show]
