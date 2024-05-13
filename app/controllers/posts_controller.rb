@@ -13,23 +13,27 @@ class PostsController < ApplicationController
 
   def index
     @posts = Post.all
-
+    @tags = Post.tag_counts_on(:tags).most_used(20)    # タグ一覧表示
     @q = Post.ransack(params[:q])
+
     if params[:q].present?
       @posts = @q.result(distinct: true)
-    else
-      @posts = Post.all
     end
 
+    if params[:tag_name].present?
+      @posts = @posts.tagged_with(params[:tag_name])
+    end
   end
 
   def show
+    @post = Post.find(params[:id])
+    @tags = @post.tag_counts_on(:tags)    # 投稿に紐付くタグの表示
   end
 
   # 投稿データのストロングパラメータ
   private
 
   def post_params
-    params.require(:post).permit(:comments, :image, :posted_text, :title)
+    params.require(:post).permit(:comments, :image, :posted_text, :title, :tag_list)
   end
 end

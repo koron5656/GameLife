@@ -5,6 +5,11 @@
   <%= f.submit '検索' %>
 <% end %>
 
+<%= link_to "all", posts_path, class: "badge badge-scondary" %>
+<% @tags.each do |tag| %>
+  <%= link_to tag.name, posts_path(tag_name: tag.name) %>
+<% end %>
+
 <% @posts.each do |post| %>
   <div>
     <%= image_tag post.get_image %>
@@ -12,5 +17,14 @@
     <p>ユーザー名：<%= post.user.name %></p>
     <p>タイトル：<%= post.title %></p>
     <p>説明：<%= post.posted_text %></p>
+    <p>タグ：</p>
+    <% if post.tag_counts_on(:tags).any? %>
+      <% post.tag_counts_on(:tags).each do |tag| %>
+        <%= link_to tag.name, posts_path(tag_name: tag.name) %>
+        <%#= link_to "#{tag.name}(#{tag.taggings_count})", tag_path(tag.name) %>
+      <% end %>
+    <% else %>
+      <p>登録されているタグはありません</p>
+    <% end %>
   </div>
 <% end %>

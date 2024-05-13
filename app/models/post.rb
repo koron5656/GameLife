@@ -1,5 +1,6 @@
 class Post < ApplicationRecord
   has_one_attached :image
+  acts_as_taggable_on :tags
 
   has_many :comments, dependent: :destroy
   has_many :post_tags, dependent: :destroy
