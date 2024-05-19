@@ -1,15 +1,30 @@
 <h1>showページ</h1>
+  <p>投稿ユーザー画像：<%= image_tag 'sample-author1.jpg' %></p>
+  <p>ユーザー名：<%= @post.user.name %></p>
+  <p>タイトル：<%= @post.title %></p>
+  <p>説明：<%= @post.posted_text %></p>
+  <p>投稿日：<%= @post.created_at.strftime('%Y/%m/%d') %></p>
+  <p>タグ：</p>
 
-<div class="tags">
-  <% if @tags.present? %>
-    <div class="d-flex flex-wrap">
-      <% @tags.each do |tag| %>
-	<span class="badge badge-info mr-2 mb-2">
-	  <%= link_to "#{tag.name}(#{tag.taggings_count})", tag_path(tag.name), class: "text-white" %>
-	</span>
-      <% end %>
-    </div>
+  <% if @post.tag_counts_on(:tags).any? %>
+  <% @post.tag_counts_on(:tags).each do |tag| %>
+    <%= link_to tag.name, posts_path(tag_name: tag.name) %>
+    <%#= link_to "#{tag.name}(#{tag.taggings_count})", tag_path(tag.name) %>
+  <% end %>
   <% else %>
     <p>登録されているタグはありません</p>
   <% end %>
-</div>
+
+<!--<div class="tags">-->
+<!--  <% if @tags.present? %>-->
+<!--    <div class="d-flex flex-wrap">-->
+<!--      <% @tags.each do |tag| %>-->
+<!--	<span class="badge badge-info mr-2 mb-2">-->
+<!--	  <%#= link_to "#{tag.name}(#{tag.taggings_count})", tag_path(tag.name), class: "text-white" %>-->
+<!--	</span>-->
+<!--      <% end %>-->
+<!--    </div>-->
+<!--  <% else %>-->
+<!--    <p>登録されているタグはありません</p>-->
+<!--  <% end %>-->
+<!--</div>-->

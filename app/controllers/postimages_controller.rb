@@ -16,6 +16,8 @@ class PostimagesController < ApplicationController
   end
 
   def show
+    @post = Post.find(params[:id])
+    @post_comment = Comment.new
   end
 
   # 投稿データのストロングパラメータ
