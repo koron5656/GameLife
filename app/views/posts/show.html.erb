@@ -15,6 +15,10 @@
     <p>登録されているタグはありません</p>
   <% end %>
 
+  <% if @post.user == current_user %>
+    <%= link_to "削除", post_path(@post), method: :delete %>
+  <% end %>
+
 <!--<div class="tags">-->
 <!--  <% if @tags.present? %>-->
 <!--    <div class="d-flex flex-wrap">-->

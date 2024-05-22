@@ -20,6 +20,12 @@ class PostimagesController < ApplicationController
     @post_comment = Comment.new
   end
 
+  def destroy
+    @post = Post.find(params[:id])
+    @post.destroy
+    redirect_to "/posts"
+  end
+
   # 投稿データのストロングパラメータ
   private
 
