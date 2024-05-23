@@ -28,6 +28,13 @@ class PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     @tags = @post.tag_counts_on(:tags)    # 投稿に紐付くタグの表示
+    @post_comment = Comment.new
+  end
+
+  def destroy
+    @post = Post.find(params[:id])
+    @post.destroy
+    redirect_to "/posts"
   end
 
   # 投稿データのストロングパラメータ

@@ -22,8 +22,10 @@ Rails.application.routes.draw do
 
   root to: "homes#top"
   resources :postimages, only: [:new, :create, :index, :show, :destroy]
-  resources :posts, only: [:new, :create, :index, :show, :destroy]
-  resources :users, only: [:show, :edit, :update]
+  resources :posts, only: [:new, :create, :index, :show, :destroy] do
+    resources :comments, only: [:create, :destroy]
+  end
+  resources :users, only: [:show, :edit, :update, :destroy]
   get 'homes/about', to: 'homes#about', as: :about
   post 'posts/new' => 'posts/index'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
