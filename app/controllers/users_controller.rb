@@ -5,6 +5,10 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @post = @user.post_images
     # @post = @user.post_images.page(params[:page])
+
+    @favorites = Favorite.where(user_id: current_user.id).pluck(:post_id)
+    @favorite_list = Post.find(@favorites)
+
   end
 
   def edit

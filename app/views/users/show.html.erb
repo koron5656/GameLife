@@ -7,6 +7,15 @@
   <% end %>
 </div>
 
+<p1>いいねリスト</p1>
+<br>
+<% if @favorite_list.present? %>
+  <% @favorite_list.each do |post| %>
+    <%= post.title %>
+    <%#= image_tag item.image%>
+    <% end %>
+<% end %>
+
 <% @post.each do |post_image| %>
 <div>
   <%= link_to post_image_path(post_image.id) do %>
