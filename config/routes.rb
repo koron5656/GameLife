@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   root to: "homes#top"
   resources :postimages, only: [:new, :create, :index, :show, :destroy]
   resources :posts, only: [:new, :create, :index, :show, :destroy] do
+    resource :favorite, only: [:create, :destroy]
     resources :comments, only: [:create, :destroy]
   end
   resources :users, only: [:show, :edit, :update, :destroy]
