@@ -6,6 +6,10 @@ class Post < ApplicationRecord
   has_many :post_tags, dependent: :destroy
   has_many :favorites, dependent: :destroy
 
+  #imageが存在しているかを確認するバリデーション
+  validates :title, presence: true
+  validates :posted_text, presence: true
+
   belongs_to :user
 
   def get_image
