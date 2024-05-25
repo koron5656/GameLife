@@ -1,16 +1,4 @@
-<h1>投稿一覧</h1>
-
-<%= search_form_for @q, url: posts_path, method: :get do |f| %>
-  <%= f.search_field :title_or_posted_text_cont, placeholder: 'キーワード検索' %>
-  <%= f.submit '検索' %>
-<% end %>
-
-<%= link_to "all", posts_path, class: "badge badge-scondary" %>
-<% @tags.each do |tag| %>
-  <%= link_to tag.name, posts_path(tag_name: tag.name) %>
-<% end %>
-
-<% @posts.each do |post| %>
+<% posts.each do |post| %>
   <div>
     <p><%= image_tag post.user.get_profile_image(100,100) %></p>
     <p>ユーザー名：<%= post.user.name %></p>
@@ -26,8 +14,6 @@
     <% else %>
       <p>登録されているタグはありません</p>
     <% end %>
-  <p><%= link_to "#{post.comments.count} コメント", post_path(post.id) %></p>
   </div>
 <% end %>
-<%#= render 'list', posts: @post %>
-<%= paginate @posts %>
+<%= paginate posts %>

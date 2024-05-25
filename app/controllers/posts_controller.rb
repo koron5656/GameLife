@@ -15,7 +15,7 @@ class PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.all
+    @posts = Post.page(params[:page])
     @tags = Post.tag_counts_on(:tags).most_used(20)    # タグ一覧表示
     @q = Post.ransack(params[:q])
 
