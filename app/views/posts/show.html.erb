@@ -1,9 +1,10 @@
-<h1>showページ</h1>
+  <h1>タイトル：<%= @post.title %></h1>
   <p><%= image_tag @post.user.get_profile_image(100,100) %></p>
   <p>ユーザー名：<%= @post.user.name %></p>
-  <p>タイトル：<%= @post.title %></p>
   <p>本文：<%= @post.posted_text %></p>
-  <p><%= image_tag @post.get_image %></p>
+  <% if @post.image.attached? %>
+    <p><%= image_tag @post.get_image %></p>
+  <% end %>
   <p>タグ：</p>
 
   <% if @post.tag_counts_on(:tags).any? %>

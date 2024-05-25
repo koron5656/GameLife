@@ -16,7 +16,9 @@
     <p>ユーザー名：<%= post.user.name %></p>
     <p>タイトル：<%= post.title %></p>
     <p>本文：<%= post.posted_text %></p>
+    <% if post.image.attached? %>
       <p><%= image_tag post.get_image %></p>
+    <% end %>
     <p>タグ：</p>
     <% if post.tag_counts_on(:tags).any? %>
       <% post.tag_counts_on(:tags).each do |tag| %>
