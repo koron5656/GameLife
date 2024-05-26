@@ -1,9 +1,19 @@
 <!-- ユーザーの詳細 -->
 <div>
+    <% if @user.errors.any? %>
+      <%= @user.errors.count %>件のエラーが発生しました
+      <ul>
+        <% @user.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    <% end %>
   <h2><%= @user.name %>さんのページ</h2>
   <%= image_tag @user.get_profile_image(100,100) %>
+  <div>ユーザーコメント</div>
+  <h4><%= @user.introduction %></h4>
   <% if @user.id == current_user.id %>
-    <p><%= link_to "プロフィール編集", edit_user_path(@user) %></p>
+    <p><%= link_to "➡プロフィール編集", edit_user_path(@user) %></p>
   <% end %>
 </div>
 
