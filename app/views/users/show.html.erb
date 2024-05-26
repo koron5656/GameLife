@@ -24,9 +24,12 @@
 <br>
 <% if @favorite_list.present? %>
   <% @favorite_list.each do |post| %>
-    <%= post.title %>
-    <%#= image_tag item.image%>
+  <div>
+    <%= link_to post_path(post.id) do %>
+      <span><%= post.title %></span>
     <% end %>
+  <% end %>
+  </div>
 <% end %>
 
 <!-- ユーザーの投稿一覧 -->
