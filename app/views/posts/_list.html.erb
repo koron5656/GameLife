@@ -7,7 +7,7 @@
     <% if post.image.attached? %>
       <p><%= image_tag post.get_image %></p>
     <% end %>
-    <p>タグ：</p>
+    登録タグ：
     <% if post.tag_counts_on(:tags).any? %>
       <% post.tag_counts_on(:tags).each do |tag| %>
         <%= link_to tag.name, posts_path(tag_name: tag.name) %>
@@ -16,6 +16,7 @@
     <% else %>
       <p>登録されているタグはありません</p>
     <% end %>
+    <p><%= link_to "コメント", post_path(post.id) %></p>
   </div>
 <% end %>
 <%= paginate posts %>
