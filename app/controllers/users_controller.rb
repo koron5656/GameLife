@@ -1,5 +1,11 @@
 class UsersController < ApplicationController
-    # before_action :authenticate_admin!
+  # before_action :authenticate_admin!
+
+  # def destroy
+  #   @user = User.find(params[:id])
+  #   @user.destroy
+  #   redirect_to admin_dashboards_path, notice: 'ユーザーを削除しました。'
+  # end
 
   def show
     @user = User.find(params[:id])
@@ -38,9 +44,5 @@ class UsersController < ApplicationController
       redirect_to post_images_path
     end
   end
-    # def destroy
-    #     @user = User.find(params[:id])
-    #     @user.destroy
-    #     redirect_to admin_dashboards_path, notice: 'ユーザーを削除しました。'
-    # end
+
 end
