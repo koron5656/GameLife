@@ -10,8 +10,6 @@ class Post < ApplicationRecord
   validates :title, presence: true
   #posted_textが存在しているかを確認するバリデーション
   validates :posted_text, presence: true
-  #commentに関する文字数制限バリデーション
-  validates :post_comment, length: { minimum: 1, maximum: 100 }
 
   belongs_to :user
 

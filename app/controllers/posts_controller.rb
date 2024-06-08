@@ -7,11 +7,8 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.user_id = current_user.id
-    if @post.save
-      redirect_to posts_path
-    else
-      render :new
-    end
+    @post.save
+    redirect_to posts_path
   end
 
   def index
@@ -32,6 +29,10 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     @tags = @post.tag_counts_on(:tags)    # 投稿に紐付くタグの表示
     @post_comment = Comment.new
+    # if @post_comment.save
+    # else
+    #   render :new
+    # end
   end
 
   def destroy
