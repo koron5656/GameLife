@@ -12,9 +12,9 @@ class PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.page(params[:page])
-    @tags = Post.tag_counts_on(:tags).most_used(20)    # タグ一覧表示
-    @q = Post.ransack(params[:q])
+    @posts = Post.all
+    @tags = @posts.tag_counts_on(:tags).most_used(20)    # タグ一覧表示
+    @q = @posts.ransack(params[:q])
 
     if params[:q].present?
       @posts = @q.result(distinct: true)
@@ -23,6 +23,7 @@ class PostsController < ApplicationController
     if params[:tag_name].present?
       @posts = @posts.tagged_with(params[:tag_name])
     end
+    @posts = @posts.page(params[:page])
   end
 
   def show
