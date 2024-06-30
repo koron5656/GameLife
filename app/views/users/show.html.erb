@@ -1,12 +1,12 @@
 <!-- ユーザーの詳細 -->
-<div>
-    <% if @user.errors.any? %>
-      <%= @user.errors.count %>件のエラーが発生しました
-      <ul>
-        <% @user.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
+<div class ="container pt-3">
+  <% if @user.errors.any? %>
+    <%= @user.errors.count %>件のエラーが発生しました
+    <ul>
+      <% @user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
     <% end %>
   <h2><%= @user.name %>さんのページ</h2>
   <%= image_tag @user.get_profile_image(100,100) %>
@@ -17,20 +17,22 @@
   <% end %>
 </div>
 
-<h3>投稿リスト</h3>
-<%= render 'posts/list', posts: @posts %>
+<div class ="container pt-3">
+  <h3>投稿リスト</h3>
+  <%= render 'posts/list', posts: @posts %>
 
-<h3>いいねリスト</h3>
-<br>
-<% if @favorite_list.present? %>
-  <% @favorite_list.each do |post| %>
-  <div>
-    <%= link_to post_path(post.id) do %>
-      <span><%= post.title %></span>
+  <h3>いいねリスト</h3>
+  <br>
+  <% if @favorite_list.present? %>
+    <% @favorite_list.each do |post| %>
+    <div>
+      <%= link_to post_path(post.id) do %>
+        <span><%= post.title %></span>
+      <% end %>
     <% end %>
+    </div>
   <% end %>
-  </div>
-<% end %>
+</div>
 
 <!-- ユーザーの投稿一覧 -->
 <%#= render 'public/post_images/list', post_images: @post_images %>
