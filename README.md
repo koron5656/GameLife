@@ -33,4 +33,5 @@ URL：https://docs.google.com/spreadsheets/d/1xeUFBD79yhauG2u8Sf-exXN8F-7KnBAvX5
 - IDE：Cloud9
 ​
 ## 使用素材
-ゲーム画面（※実在するゲーム画面は用いないダミーデータ）
+・ゲーム画面（※実在するゲーム画面は用いないダミーデータ）
+・各種画像（いらすとや　引用元URL:https://www.irasutoya.com/）
